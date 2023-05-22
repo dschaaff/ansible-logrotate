@@ -1,9 +1,9 @@
----
 galaxy_info:
+  role_name: logrotate
   author: Nick Hammond
   description: Role to configure logrotate scripts
   license: BSD
-  min_ansible_version: 1.9
+  min_ansible_version: "1.9"
   platforms:
   - name: Ubuntu
     versions:
@@ -12,7 +12,7 @@ galaxy_info:
     - trusty
   - name: EL
     versions:
-    - 7
-  categories:
+    - "7"
+  galaxy_tags:
   - system
 dependencies: []
