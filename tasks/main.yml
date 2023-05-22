@@ -11,3 +11,9 @@
     dest: "{{ logrotate_conf_dir }}{{ item.name }}"
   with_items: "{{ logrotate_scripts }}"
   when: logrotate_scripts is defined
+
+- name: ensure logrotate is enabled
+  ansible.builtin.systemd:
+    name: logrotate.timer
+    enabled: yes
+    state: started
