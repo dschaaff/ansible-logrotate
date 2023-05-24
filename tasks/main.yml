@@ -15,8 +15,14 @@
   with_items: "{{ logrotate_scripts }}"
   when: logrotate_scripts is defined
 
+- name: check if logrotate.timer exists
+  ansible.builtin.stat:
+    path: /usr/lib/systemd/system/logrotate.timer
+  register: logrotate_timer
+
 - name: ensure logrotate is enabled
   ansible.builtin.systemd:
     name: logrotate.timer
     enabled: yes
     state: started
+  when: logrotate_timer.stat.exists
