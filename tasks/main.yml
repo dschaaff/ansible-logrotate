@@ -1,28 +1,28 @@
 ---
-- name: nickhammond.logrotate | Install logrotate
-  package:
+- name: Install logrotate
+  ansible.builtin.package:
     name: logrotate
     state: present
   when: logrotate_scripts is defined and logrotate_scripts|length > 0
 
-- name: nickhammond.logrotate | Setup logrotate.d scripts
-  template:
+- name: Setup logrotate.d scripts
+  ansible.builtin.template:
     src: logrotate.d.j2
     dest: "{{ logrotate_conf_dir }}{{ item.name }}"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   with_items: "{{ logrotate_scripts }}"
   when: logrotate_scripts is defined
 
-- name: check if logrotate.timer exists
+- name: Check if logrotate.timer exists
   ansible.builtin.stat:
     path: /usr/lib/systemd/system/logrotate.timer
   register: logrotate_timer
 
-- name: ensure logrotate is enabled
+- name: Ensure logrotate is enabled
   ansible.builtin.systemd:
     name: logrotate.timer
-    enabled: yes
+    enabled: true
     state: started
   when: logrotate_timer.stat.exists

@@ -1,18 +1,19 @@
 galaxy_info:
   role_name: logrotate
-  author: Nick Hammond
+  namespace: cordial
+  author: Cordial Inc.
   description: Role to configure logrotate scripts
   license: BSD
   min_ansible_version: "1.9"
   platforms:
-  - name: Ubuntu
-    versions:
-    - lucid
-    - precise
-    - trusty
-  - name: EL
-    versions:
-    - "7"
+    - name: Ubuntu
+      versions:
+        - lucid
+        - precise
+        - trusty
+    - name: EL
+      versions:
+        - "7"
   galaxy_tags:
-  - system
+    - system
 dependencies: []
